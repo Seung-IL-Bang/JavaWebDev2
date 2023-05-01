@@ -13,7 +13,7 @@
         <logger name="org.springframework" level="INFO" addtivity="false">
             <appender-ref ref="console" />
         </logger>
-        <logger name="org.webdev" level="INFO" addtivity="false">
+        <logger name="com.webdev" level="INFO" addtivity="false">
             <appender-ref ref="console" />
         </logger>
 
