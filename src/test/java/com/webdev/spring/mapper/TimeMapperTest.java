@@ -14,12 +14,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 public class TimeMapperTest {
 
     @Autowired(required = false) // required = false; 직접 빈으로 등록된 TimeMapper 가 없기 때문에 발생하는 경고를 방지하기 위해 적용
-    private TimeMapper timeMapper;
+    private TimeMapper2 timeMapper2;
 
     @Test
     @DisplayName("MyBatis: select now()")
     public void testGetTime() {
-        log.info(timeMapper.getTime());
+        log.info(timeMapper2.getNow());
     }
 }
 
