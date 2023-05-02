@@ -41,3 +41,10 @@ public class SampleTest {
         connection.close();
     }
 }
+
+// @ExtendWith(SpringExtension.class)
+// : JUnit5 버전에서 'spring-test' 를 이용하기 위한 설정이다. (JUnit4 버전에서는 -> @RunWith)
+
+// @ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/root-context.xml")
+// : 스프링의 설정 정보를 로딩하기 위해서 사용한다. 현재 프로젝트에선 스프링 설정을 XML 로 진행하기 때문에 'locations' 속성을 이용한다.
+//   자바 설정을 이용하는 경우에는 'classes' 속성을 이용한다.
