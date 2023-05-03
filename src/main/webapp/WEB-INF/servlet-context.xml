@@ -22,14 +22,19 @@
     <!-- base-package 하위 경로에 빈과 관련된 어노테이션이 추가된 클래스들이 스캔되어 빈으로 지정되기 위한 설정 -->
     <context:component-scan base-package="com.webdev.spring.controller" />
 
-    <!-- Formatter 설정을 위한 FormattingConversionServiceFactoryBean 등록 & LocalDateFormatter 추가 -->
+    <!-- Formatter 설정을 위한 FormattingConversionServiceFactoryBean 등록 -->
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
+                <!-- LocalDateFormatter 추가 -->
                 <bean class="com.webdev.spring.controller.formatter.LocalDateFormatter"/>
+                <!-- CheckboxFormatter 추가 -->
+                <bean class="com.webdev.spring.controller.formatter.CheckboxFormatter" />
             </set>
         </property>
     </bean>
+
+
 
 
 </beans>
