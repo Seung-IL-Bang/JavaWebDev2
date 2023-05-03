@@ -5,6 +5,7 @@ import com.webdev.spring.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,10 @@ public class TodoController {
     private final TodoService todoService;
 
     @RequestMapping("/list")
-    public void list() {
+    public void list(Model model) {
         log.info("todo list...");
+
+        model.addAttribute("dtoList", todoService.getAll());
     }
 
 //    @RequestMapping(value = "/register", method = RequestMethod.GET)
@@ -49,5 +52,12 @@ public class TodoController {
         todoService.register(todoDTO);
 
         return "redirect:/todo/list";
+    }
+
+    @GetMapping("/read")
+    public void read(Long tno, Model model) {
+        TodoDTO todoDTO = todoService.getOne(tno);
+
+        model.addAttribute("dto", todoDTO);
     }
 }

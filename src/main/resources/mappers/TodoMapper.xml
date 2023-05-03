@@ -11,4 +11,12 @@
     <insert id="insert"> <!-- #{파라미터명}: VO의 변수명하고 동일해야 한다. -->
         insert into todo (title, dueDate, writer) values (#{title}, #{dueDate}, #{writer})
     </insert>
+
+    <select id="selectAll" resultType="com.webdev.spring.domain.TodoVO">
+        select * from todo order by tno desc
+    </select>
+
+    <select id="selectOne" resultType="com.webdev.spring.domain.TodoVO">
+        select * from todo where tno = #{tno}
+    </select>
 </mapper>
