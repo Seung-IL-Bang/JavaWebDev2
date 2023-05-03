@@ -72,7 +72,7 @@
           </div>
           <div class="form-check">
             <label class="form-check-label">
-              Finished &nbsp;
+              Finished &nbsp; <!-- Non-breaking Space: 띄어쓰기는 되지만 자동으로 줄바꿈은 되지 않는다. -->
             </label>
             <input class="form-check-input" type="checkbox" name="finished" ${dto.finished ? "checked" : ""} />
           </div>

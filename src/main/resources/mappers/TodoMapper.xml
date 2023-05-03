@@ -19,4 +19,8 @@
     <select id="selectOne" resultType="com.webdev.spring.domain.TodoVO">
         select * from todo where tno = #{tno}
     </select>
+
+    <delete id="delete">
+        delete from todo where tno=#{tno}
+    </delete>
 </mapper>
