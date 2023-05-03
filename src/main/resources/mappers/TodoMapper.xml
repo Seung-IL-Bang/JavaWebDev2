@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webdev.spring.mapper.TodoMapper">
+    <select id="getTime" resultType="string">
+        select now() <!-- sql 작성 시 ; 붙이지 않는 것에 주의 -->
+    </select>
+
+    <insert id="insert"> <!-- #{파라미터명}: VO의 변수명하고 동일해야 한다. -->
+        insert into todo (title, dueDate, writer) values (#{title}, #{dueDate}, #{writer})
+    </insert>
+</mapper>
