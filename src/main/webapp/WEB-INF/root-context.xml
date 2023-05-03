@@ -10,10 +10,8 @@
 
 
     <!--  Bean 설정    -->
-    <!--    <bean class="com.webdev.spring.sample.SampleDAO"></bean>-->
-    <!--    <bean class="com.webdev.spring.sample.SampleService"></bean>-->
     <!--    컴포넌트 스캔을 통한 자동 빈 설정     -->
-    <context:component-scan base-package="com.webdev.spring.sample"/>
+
 
 
     <!--    HikariConfig    -->
