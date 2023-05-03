@@ -10,4 +10,5 @@ public interface TodoMapper {
     List<TodoVO> selectAll();
     TodoVO selectOne(Long tno);
     void delete(Long tno);
+    void update(TodoVO todoVo);
 }
