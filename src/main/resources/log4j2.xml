@@ -16,6 +16,9 @@
         <logger name="com.webdev" level="INFO" addtivity="false">
             <appender-ref ref="console" />
         </logger>
+        <logger name="com.webdev.spring.mapper" level="TRACE" addtivity="false">
+            <appender-ref ref="console"/>
+        </logger>
 
         <root level="INFO" additivity="false">
             <AppenderRef ref="console" />
