@@ -27,4 +27,12 @@
     <update id="update">
         update todo set title = #{title}, dueDate = #{dueDate}, finished = #{finished} where tno = #{tno}
     </update>
+
+    <select id="selectList" resultType="com.webdev.spring.domain.TodoVO">
+        select * from todo order by tno desc limit #{skip}, #{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(tno) from todo
+    </select>
 </mapper>

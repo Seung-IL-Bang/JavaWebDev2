@@ -1,6 +1,7 @@
 package com.webdev.spring.mapper;
 
 import com.webdev.spring.domain.TodoVO;
+import com.webdev.spring.dto.PageRequestDTO;
 import jdk.vm.ci.meta.Local;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
@@ -55,6 +56,19 @@ public class TodoMapperTest {
         TodoVO todoVO = todoMapper.selectOne(1L);
 
         log.info(todoVO);
+    }
+
+    @Test
+    @DisplayName("selectList Pagination")
+    public void testSelectList() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .build();
+
+        List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+
+        voList.forEach(log::info);
     }
 
 }
