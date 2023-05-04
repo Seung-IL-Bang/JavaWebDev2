@@ -8,6 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.time.LocalDate;
+import java.util.Arrays;
 
 @Builder
 @Data
@@ -28,17 +32,60 @@ public class PageRequestDTO {
 
     private String link;
 
+    private String[] types;
+
+    private String keyword;
+
+    private boolean finished;
+
+    private LocalDate from;
+
+    private LocalDate to;
+
     public int getSkip() {
         return (page - 1) * 10;
     }
 
     public String getLink() {
-        if (link == null) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("page=" + this.page);
-            stringBuilder.append("&size=" + this.size);
-            link = stringBuilder.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("page=" + this.page);
+        stringBuilder.append("&size=" + this.size);
+        link = stringBuilder.toString();
+
+        if (finished) {
+            stringBuilder.append("&finished=on");
         }
-        return link;
+
+        if (types != null && types.length > 0) {
+            for (String type : types) {
+                stringBuilder.append("&types=" + type);
+            }
+        }
+
+        if (keyword != null) {
+            try {
+                stringBuilder.append("&keyword=" + URLEncoder.encode(keyword, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (from != null) {
+            stringBuilder.append("&from=" + from.toString());
+        }
+
+        if (to != null) {
+            stringBuilder.append("&to=" + to.toString());
+        }
+
+        return stringBuilder.toString();
+}
+
+    public boolean checkType(String type) {
+        if (types == null || types.length == 0) {
+            return false;
+        }
+
+        return Arrays.stream(types).anyMatch(type::equals);
     }
 }
