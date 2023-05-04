@@ -1,6 +1,8 @@
 package com.webdev.spring.service;
 
 import com.webdev.spring.domain.TodoVO;
+import com.webdev.spring.dto.PageRequestDTO;
+import com.webdev.spring.dto.PageResponseDTO;
 import com.webdev.spring.dto.TodoDTO;
 import com.webdev.spring.mapper.TodoMapper;
 import lombok.RequiredArgsConstructor;
@@ -61,5 +63,25 @@ public class TodoServiceImpl implements TodoService {
 
         todoMapper.update(todoVO);
 
+    }
+
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+
+        List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+
+        List<TodoDTO> dtoList = voList.stream()
+                .map(vo -> modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toList());
+
+        int total = todoMapper.getCount(pageRequestDTO);
+
+        PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll()
+                .dtoList(dtoList)
+                .total(total)
+                .pageRequestDTO(pageRequestDTO)
+                .build();
+
+        return pageResponseDTO;
     }
 }

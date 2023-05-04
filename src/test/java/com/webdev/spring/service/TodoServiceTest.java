@@ -1,5 +1,7 @@
 package com.webdev.spring.service;
 
+import com.webdev.spring.dto.PageRequestDTO;
+import com.webdev.spring.dto.PageResponseDTO;
 import com.webdev.spring.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.DisplayName;
@@ -30,4 +32,18 @@ public class TodoServiceTest {
 
         todoService.register(todoDTO);
     }
+
+    @Test
+    @DisplayName("Pagination ResponseDTO")
+    public void testPaging() {
+
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
+
+        PageResponseDTO<TodoDTO> pageResponseDTO = todoService.getList(pageRequestDTO);
+
+        log.info(pageResponseDTO);
+
+        pageResponseDTO.getDtoList().stream().forEach(todoDTO -> log.info(todoDTO));
+    }
+
 }
